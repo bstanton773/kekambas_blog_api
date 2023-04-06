@@ -13,6 +13,12 @@ def verify(username, password):
         return user
 
 
+@basic_auth.error_handler
+def handle_error(status_code):
+    print(status_code)
+    return {'error': 'Incorrect username and/or password'}
+
+
 @token_auth.verify_token
 def verify(token):
     user = User.query.filter_by(token=token).first()
