@@ -7,7 +7,7 @@ from config import Config
 app = Flask(__name__)
 app.config.from_object(Config)
 
-CORS(app)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)

@@ -10,7 +10,10 @@ from app.blueprints.api.http_auth import basic_auth, token_auth
 def get_token():
     user = basic_auth.current_user()
     token = user.get_token()
-    return jsonify({'token': token})
+    return jsonify({
+        'token': token,
+        'token_expiration': user.token_expiration
+        })
 
 
 # Create a user
